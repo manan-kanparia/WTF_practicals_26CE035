@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Secure Bank Ltd. - Banking Utilities</title>
+  <!-- External CSS -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <header class="site-header">
+    <h1>Secure Bank Ltd.</h1>
+    <p>Quick calculators to check before you apply</p>
+  </header>
+
+  <main class="container">
+
+    <!-- 1. Variables and scope demo (Task 2) -->
+    <section class="panel">
+      <h2>Variable scope: var, let, const</h2>
+      <button id="btnScope" type="button">Run scope demo</button>
+      <pre id="scopeOutput" class="output"></pre>
+    </section>
+
+    <!-- 2. Loan eligibility (Tasks 3, 4: operators, if-else, nested if) -->
+    <section class="panel">
+      <h2>Loan eligibility check</h2>
+      <div class="grid">
+        <label>Applicant name
+          <input type="text" id="elName" placeholder="e.g. Riya Shah">
+        </label>
+        <label>Age (years)
+          <input type="number" id="elAge" min="0" placeholder="e.g. 28">
+        </label>
+        <label>Monthly income (₹)
+          <input type="number" id="elIncome" min="0" placeholder="e.g. 50000">
+        </label>
+        <label>Existing EMIs per month (₹)
+          <input type="number" id="elEmi" min="0" value="0">
+        </label>
+        <label>Credit score (300-900)
+          <input type="number" id="elScore" min="300" max="900" placeholder="e.g. 760">
+        </label>
+        <label>Employment type
+          <select id="elEmployment">
+            <option value="salaried">Salaried</option>
+            <option value="self">Self-employed</option>
+            <option value="student">Student</option>
+            <option value="unemployed">Unemployed</option>
+          </select>
+        </label>
+      </div>
+      <button id="btnEligibility" type="button">Check eligibility</button>
+      <div id="eligibilityOutput" class="output"></div>
+    </section>
+
+    <!-- 3. EMI calculator (Tasks 4 switch, 5 for loop, 6 functions) -->
+    <section class="panel">
+      <h2>EMI calculator</h2>
+      <div class="grid">
+        <label>Loan type
+          <select id="emiType">
+            <option value="home">Home loan</option>
+            <option value="car">Car loan</option>
+            <option value="education">Education loan</option>
+            <option value="personal">Personal loan</option>
+          </select>
+        </label>
+        <label>Loan amount (₹)
+          <input type="number" id="emiAmount" min="0" placeholder="e.g. 500000">
+        </label>
+        <label>Tenure (years)
+          <input type="number" id="emiYears" min="1" placeholder="e.g. 5">
+        </label>
+        <label>Interest rate (% p.a.)
+          <input type="number" id="emiRate" step="0.1" min="0" placeholder="auto-filled from loan type">
+        </label>
+      </div>
+      <button id="btnEmi" type="button">Calculate EMI</button>
+      <div id="emiOutput" class="output"></div>
+      <div id="emiTable" class="table-wrap"></div>
+    </section>
+
+    <!-- 4. Interest tables (Task 5: for loop) -->
+    <section class="panel">
+      <h2>Simple vs compound interest table</h2>
+      <div class="grid">
+        <label>Principal (₹)
+          <input type="number" id="siPrincipal" min="0" placeholder="e.g. 100000">
+        </label>
+        <label>Rate (% p.a.)
+          <input type="number" id="siRate" step="0.1" min="0" placeholder="e.g. 7">
+        </label>
+        <label>Years
+          <input type="number" id="siYears" min="1" max="30" placeholder="e.g. 10">
+        </label>
+      </div>
+      <button id="btnInterest" type="button">Generate table</button>
+      <div id="interestTable" class="table-wrap"></div>
+    </section>
+
+    <!-- 5. Account utilities (Task 5: while and do-while) -->
+    <section class="panel">
+      <h2>Account utilities</h2>
+
+      <h3>Savings goal planner (do-while)</h3>
+      <div class="grid">
+        <label>Opening balance (₹)
+          <input type="number" id="goalStart" min="0" value="10000">
+        </label>
+        <label>Monthly deposit (₹)
+          <input type="number" id="goalDeposit" min="0" placeholder="e.g. 5000">
+        </label>
+        <label>Target amount (₹)
+          <input type="number" id="goalTarget" min="0" placeholder="e.g. 100000">
+        </label>
+        <label>Account type
+          <select id="goalAccount">
+            <option value="savings">Savings (3.5%)</option>
+            <option value="salary">Salary (4%)</option>
+            <option value="senior">Senior citizen (5%)</option>
+            <option value="current">Current (0%)</option>
+          </select>
+        </label>
+      </div>
+      <button id="btnGoal" type="button">Plan my goal</button>
+      <div id="goalOutput" class="output"></div>
+
+      <h3>Mini statement (while)</h3>
+      <p class="hint">Enter transactions separated by commas. Use positive numbers for deposits and negative numbers for withdrawals.</p>
+      <div class="grid">
+        <label>Opening balance (₹)
+          <input type="number" id="stOpening" min="0" value="5000">
+        </label>
+        <label>Transactions
+          <input type="text" id="stTxns" value="2000, -500, 1500, -3000, -10000, 750">
+        </label>
+      </div>
+      <button id="btnStatement" type="button">Generate statement</button>
+      <div id="statementOutput" class="table-wrap"></div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <p>Open the browser console (F12) to see the scope demo and automated test results.</p>
+  </footer>
+
+  <!-- External JavaScript -->
+  <script src="script.js"></script>
+</body>
+</html>

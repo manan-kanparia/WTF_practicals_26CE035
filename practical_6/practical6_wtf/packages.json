@@ -1,0 +1,7 @@
+[
+  {"id":1,"destination":"Goa","title":"Goa Beach Holiday","days":3,"price":8000,"description":"Explore beaches, markets and seaside attractions.","icon":"🏖️"},
+  {"id":2,"destination":"Jaipur","title":"Jaipur Heritage Tour","days":2,"price":6000,"description":"Visit famous forts, palaces and local markets.","icon":"🏰"},
+  {"id":3,"destination":"Manali","title":"Manali Mountain Escape","days":5,"price":12000,"description":"Discover mountains, scenic valleys and nature.","icon":"🏔️"},
+  {"id":4,"destination":"Kerala","title":"Kerala Backwater Trip","days":4,"price":10500,"description":"Enjoy calm backwaters, greenery and local food.","icon":"🌴"},
+  {"id":5,"destination":"Udaipur","title":"Udaipur Lake Getaway","days":2,"price":6500,"description":"Explore beautiful lakes and royal architecture.","icon":"⛵"}
+]

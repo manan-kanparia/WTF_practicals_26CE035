@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Practical 6 – Interactive JavaScript Teaching Demo</title>
+<style>
+:root{--blue:#215da0;--ink:#233047;--muted:#65758d;--stroke:#dbe4f1;--background:#f5f8fc;--panel:#fff;--code:#14243d;--result:#eaf3ff;}
+*{box-sizing:border-box;}
+body{font:15px/1.55 Arial,sans-serif;margin:0;background:var(--background);color:var(--ink);}
+header{background:linear-gradient(120deg,#142d53,#2368a4);padding:35px 22px;color:white;}
+.header-inner{max-width:1040px;margin:auto;}header .label{display:inline-block;border:1px solid #a7cef6;padding:5px 10px;border-radius:20px;color:#daeeff;font-size:12px;font-weight:bold;letter-spacing:.05em;}header h1{margin:14px 0 5px;font-size:clamp(26px,4.5vw,37px);}header p{color:#d9edff;margin:4px 0 10px;}header .note{font-size:13px;color:#f3f8ff;}
+main{max-width:1080px;margin:24px auto 60px;padding:0 16px;}.intro{background:#e8f3ff;border-radius:10px;padding:16px 20px;border:1px solid #cce2fb;margin-bottom:22px;}
+section{background:var(--panel);border-radius:12px;border:1px solid var(--stroke);margin:18px 0;padding:21px;box-shadow:0 3px 15px #1c49750b;}.title-row{display:flex;gap:12px;align-items:center;margin-bottom:9px;}.num{padding:7px 10px;background:#e4f0ff;color:#2563a4;font-weight:bold;border-radius:8px;font-size:13px;}h2{margin:0;font-size:20px;}section>p{color:var(--muted);margin:5px 0 13px;}.demo-layout{display:grid;grid-template-columns:minmax(0,1fr) minmax(300px,1fr);gap:18px;align-items:stretch;}
+.exercise{border:1px solid #e2e8f0;border-radius:9px;background:#fafcff;padding:14px;}.exercise h3{font-size:14px;margin:0 0 8px;color:#456287;}.code-area h3{font-size:14px;margin:0 0 8px;color:#456287;}pre{background:var(--code);color:#e6edf7;border-radius:8px;padding:14px;white-space:pre-wrap;word-break:break-word;overflow:auto;margin:0;font:13px/1.6 Consolas,Monaco,monospace;min-height:130px;}.hint{font-size:12px;color:#64748b;margin-top:7px;}
+button,select,input{font:inherit;border-radius:7px;}button{padding:9px 12px;background:var(--blue);color:white;border:0;cursor:pointer;margin:4px 5px 4px 0;}button.alt{background:#e3eefb;color:#194d81;border:1px solid #c1d9f1;}button:disabled{opacity:.6;cursor:not-allowed;}button:hover:not(:disabled){filter:brightness(.95);}select,input{padding:9px 10px;border:1px solid #bdccde;max-width:100%;}label{display:block;font-size:13px;font-weight:bold;color:#506783;margin:8px 0 4px;}.output{background:var(--result);border-left:3px solid #4385c5;border-radius:4px;padding:11px;min-height:46px;margin-top:11px;white-space:pre-line;}.output.bad{background:#fff0f2;border-color:#cf3350;color:#951f38;}.output.good{background:#edfcf3;border-color:#219465;color:#175b3a;}.tiny-card{padding:10px;background:white;border:1px solid #dce5ef;border-radius:8px;margin:6px 0;}.tiny-card b{display:block;}.tiny-card span{font-size:13px;color:#60758b;}.tag{display:inline-block;font-size:11px;background:#e5f2ff;color:#205993;padding:3px 7px;border-radius:4px;margin:3px 0 6px;}
+.summary{background:#edf5ff;padding:18px;border-radius:10px;border:1px solid #d4e6fb;}.summary table{border-collapse:collapse;width:100%;font-size:14px;}.summary th,.summary td{padding:9px;border-bottom:1px solid #cfe0f2;text-align:left;}.summary th{font-weight:700;}.summary p{margin-bottom:0;font-size:13px;}
+body.dark{--background:#0e1728;--panel:#1f2b3e;--ink:#e8f1ff;--muted:#bacbe1;--stroke:#344764;--result:#293d5b;--code:#0c1525;}body.dark .intro,body.dark .summary{background:#243d5a;border-color:#315579;}body.dark .exercise{background:#27364c;border-color:#415574;}body.dark .exercise h3,body.dark .code-area h3,body.dark label{color:#d0e3ff;}body.dark .tiny-card{background:#2b3c51;border-color:#4a617b;}body.dark .tiny-card span,body.dark .hint{color:#bdd0e9;}body.dark .output.bad{background:#572d39;color:#ffe0e6;}body.dark .output.good{background:#1d4536;color:#d1fce4;}body.dark input,body.dark select{background:#31445d;color:#fff;border-color:#6a7f9b;}body.dark button.alt{background:#3e5371;color:#e0edff;border-color:#627d9d;}
+@media(max-width:750px){.demo-layout{grid-template-columns:1fr;}.code-area{margin-top:4px;}section{padding:15px;}header{padding:26px 17px;}}
+</style>
+</head>
+<body>
+<header><div class="header-inner"><span class="label">ITUS102 • LIVE TEACHING LAB</span><h1>Practical 6: Asynchronous JavaScript</h1><p>WanderGo Travels — Timers · Callbacks · Fetch API · JSON · Browser Storage</p><div class="note">Beginner-friendly: change inputs, click buttons and compare the live result with the JavaScript code.</div></div></header>
+<main>
+<div class="intro"><strong>How to learn:</strong> Try the buttons in each section. Observe what changes on the webpage. Read the short code example beside the output. This single HTML file works without a separate server; its Fetch API lesson reads JSON from a temporary local Blob URL. The actual practical uses <code>fetch("packages.json")</code> with Live Server.</div>
+
+<section>
+    <div class="title-row"><span class="num">01</span><h2>Timers: setTimeout() and setInterval()</h2></div>
+    <p>See the difference between an action that happens once and an action that repeats.</p>
+    <div class="demo-layout">
+        <div class="exercise"><h3>TRY IT</h3><button id="onceBtn">Run After 2 Seconds</button><button id="repeatBtn">Start Repeating</button><button id="stopRepeatBtn" class="alt">Stop Repeating</button><div id="timerOutput" class="output">Click a button to begin.</div><div class="hint">setTimeout = once • setInterval = repeatedly • clearInterval = stop</div></div>
+        <div class="code-area"><h3>JAVASCRIPT CODE</h3><pre>setTimeout(function(){
+    result.textContent = "Offer unlocked!";
+}, 2000);
+
+let timer = setInterval(function(){
+    result.textContent = "New message";
+}, 2000);
+
+clearInterval(timer);</pre></div>
+    </div>
+</section>
+
+<section>
+    <div class="title-row"><span class="num">02</span><h2>Callback Function</h2></div>
+    <p>A callback is a function given to another function, to be called when the task finishes.</p>
+    <div class="demo-layout">
+        <div class="exercise"><h3>TRY IT</h3><label for="requestDestination">Destination</label><select id="requestDestination"><option>Goa</option><option>Jaipur</option><option>Manali</option></select><div><button id="callbackBtn">Process Travel Request</button></div><div id="callbackOutput" class="output">Step 0: Waiting for a request.</div><div class="hint">A demo only. No real travel booking is created.</div></div>
+        <div class="code-area"><h3>JAVASCRIPT CODE</h3><pre>function processRequest(place, callback){
+    setTimeout(function(){
+        callback("Request for " + place + " done!");
+    }, 1500);
+}
+
+processRequest("Goa", function(message){
+    result.textContent = message;
+});</pre></div>
+    </div>
+</section>
+
+<section>
+    <div class="title-row"><span class="num">03</span><h2>Fetch API + JSON + Error Handling</h2></div>
+    <p>Load a JSON list using <code>fetch()</code>, display its records and catch a deliberately invalid JSON response.</p>
+    <div class="demo-layout">
+        <div class="exercise"><h3>TRY IT</h3><button id="fetchBtn">Fetch Travel Packages</button><button id="brokenBtn" class="alt">Simulate JSON Error</button><div id="fetchOutput" class="output">No data loaded yet.</div><div id="fetchedCards"></div><div class="hint">The demo fetches a temporary local Blob URL. In the student project, fetch("packages.json") reads the separate file through Live Server.</div></div>
+        <div class="code-area"><h3>JAVASCRIPT CODE</h3><pre>fetch("packages.json")
+.then(function(response){
+    if(!response.ok) throw new Error("Load failed");
+    return response.json();
+})
+.then(function(packages){
+    // Display package cards using DOM
+    console.log(packages);
+})
+.catch(function(error){
+    result.textContent = error.message;
+});</pre></div>
+    </div>
+</section>
+
+<section>
+    <div class="title-row"><span class="num">04</span><h2>Local Storage: Remember Preferences</h2></div>
+    <p>Local Storage remembers your destination and theme after refreshing this page.</p>
+    <div class="demo-layout">
+        <div class="exercise"><h3>TRY IT</h3><label for="savedDestination">Favourite Destination</label><select id="savedDestination"><option value="Goa">Goa</option><option value="Jaipur">Jaipur</option><option value="Manali">Manali</option><option value="Kerala">Kerala</option></select><div><button id="saveLocalBtn">Save Destination</button><button id="themeDemoBtn" class="alt">Toggle Theme</button></div><div><button id="removeLocalBtn" class="alt">Clear Local Storage</button><button id="reloadDemoBtn" class="alt">Refresh Page</button></div><div id="localOutput" class="output">Preferences not saved.</div><div class="hint">Save a destination, then refresh to confirm it remains stored.</div></div>
+        <div class="code-area"><h3>JAVASCRIPT CODE</h3><pre>localStorage.setItem("destination", "Goa");
+
+let place = localStorage.getItem("destination");
+
+localStorage.removeItem("destination");
+
+// Data normally survives a page refresh.</pre></div>
+    </div>
+</section>
+
+<section>
+    <div class="title-row"><span class="num">05</span><h2>Session Storage: Temporary Guest Name</h2></div>
+    <p>Session Storage remembers information in this browser tab's session, including across reloads.</p>
+    <div class="demo-layout">
+        <div class="exercise"><h3>TRY IT</h3><label for="sessionName">Your Name</label><input id="sessionName" maxlength="30" placeholder="Type your name"><div><button id="saveSessionDemoBtn">Save Temporary Name</button><button id="clearSessionDemoBtn" class="alt">Clear Session</button></div><div id="sessionOutput" class="output">No temporary name stored.</div><div class="hint">Data is not sent anywhere; it stays in browser storage.</div></div>
+        <div class="code-area"><h3>JAVASCRIPT CODE</h3><pre>sessionStorage.setItem("guest", "Aarav");
+
+let name = sessionStorage.getItem("guest");
+
+sessionStorage.removeItem("guest");
+
+// Saved for the current tab's session.</pre></div>
+    </div>
+</section>
+
+<div class="summary"><h2>Quick revision</h2><table><thead><tr><th>Concept</th><th>Purpose in WanderGo</th></tr></thead><tbody><tr><td>setTimeout</td><td>Display a delayed promotional offer</td></tr><tr><td>setInterval</td><td>Rotate travel messages repeatedly</td></tr><tr><td>Callback</td><td>Show confirmation after simulated processing</td></tr><tr><td>Fetch + JSON</td><td>Load package details without a page reload</td></tr><tr><td>.catch()</td><td>Show an error if loading or JSON parsing fails</td></tr><tr><td>Local Storage</td><td>Remember destination and theme</td></tr><tr><td>Session Storage</td><td>Temporarily remember guest name</td></tr></tbody></table><p><strong>Student challenge:</strong> In the full project, add a sixth destination, change the timer delays, and explain what happens when you attempt to fetch a missing file.</p></div>
+</main>
+
+<script id="demoJson" type="application/json">[
+  {"destination":"Goa","title":"Goa Beach Holiday","days":3,"price":8000},
+  {"destination":"Jaipur","title":"Jaipur Heritage Tour","days":2,"price":6000},
+  {"destination":"Manali","title":"Manali Mountain Escape","days":5,"price":12000},
+  {"destination":"Kerala","title":"Kerala Backwater Trip","days":4,"price":10500},
+  {"destination":"Udaipur","title":"Udaipur Lake Getaway","days":2,"price":6500}
+]</script>
+<script>
+"use strict";
+
+// 1. Timers
+let repeatTimer = null;
+let repeatCount = 0;
+let offerTimer = null;
+
+document.getElementById("onceBtn").addEventListener("click", function(){
+    clearTimeout(offerTimer);
+    document.getElementById("timerOutput").textContent = "Waiting 2 seconds... (setTimeout)";
+    offerTimer = setTimeout(function(){ document.getElementById("timerOutput").textContent = "Special Offer unlocked! setTimeout ran once."; }, 2000);
+});
+
+document.getElementById("repeatBtn").addEventListener("click", function(){
+    clearInterval(repeatTimer);
+    repeatCount = 0;
+    document.getElementById("timerOutput").textContent = "Repeating every 2 seconds...";
+    repeatTimer = setInterval(function(){
+        repeatCount++;
+        document.getElementById("timerOutput").textContent = "Promotional message number " + repeatCount + " (setInterval)";
+    }, 2000);
+});
+
+document.getElementById("stopRepeatBtn").addEventListener("click", function(){
+    clearInterval(repeatTimer);
+    repeatTimer = null;
+    document.getElementById("timerOutput").textContent = "Repeated messages stopped using clearInterval().";
+});
+
+// 2. Callback
+function processRequest(place, callback){
+    setTimeout(function(){ callback("Request for " + place + " completed!"); }, 1500);
+}
+
+document.getElementById("callbackBtn").addEventListener("click", function(){
+    let place = document.getElementById("requestDestination").value;
+    let button = this;
+    button.disabled = true;
+    document.getElementById("callbackOutput").textContent = "Step 1: Request started.\nStep 2: Processing for 1.5 seconds...";
+
+    processRequest(place, function(message){
+        document.getElementById("callbackOutput").textContent = "Step 3: Callback executed!\n" + message;
+        button.disabled = false;
+    });
+});
+
+// 3. Fetch demo: create a Blob URL so even a directly opened HTML file can fetch JSON.
+function fetchDemoPackages(makeError){
+    let jsonText = makeError ? "this is not valid JSON" : document.getElementById("demoJson").textContent;
+    let file = new Blob([jsonText], {type:"application/json"});
+    let fileUrl = URL.createObjectURL(file);
+    let output = document.getElementById("fetchOutput");
+    output.textContent = "Loading JSON using fetch()...";
+    output.className = "output";
+    document.getElementById("fetchedCards").replaceChildren();
+
+    fetch(fileUrl).then(function(response){
+        if(!response.ok) throw new Error("Could not load data.");
+        return response.json();
+    }).then(function(packages){
+        output.textContent = "Success! Received " + packages.length + " JSON package records.";
+        output.className = "output good";
+        URL.revokeObjectURL(fileUrl);
+
+        for(let i = 0; i < packages.length; i++){
+            let item = packages[i];
+            let card = document.createElement("div"); card.className = "tiny-card";
+            let name = document.createElement("b"); name.textContent = item.title;
+            let detail = document.createElement("span"); detail.textContent = item.destination + " · " + item.days + " days · ₹" + item.price.toLocaleString("en-IN");
+            card.append(name, detail);
+            document.getElementById("fetchedCards").appendChild(card);
+        }
+    }).catch(function(error){
+        URL.revokeObjectURL(fileUrl);
+        output.textContent = "Error handled using .catch(): " + error.message;
+        output.className = "output bad";
+    });
+}
+
+document.getElementById("fetchBtn").addEventListener("click", function(){ fetchDemoPackages(false); });
+document.getElementById("brokenBtn").addEventListener("click", function(){ fetchDemoPackages(true); });
+
+// 4. Local storage
+function updateLocalDisplay(){
+    let place = localStorage.getItem("p6_destination") || "None";
+    let theme = localStorage.getItem("p6_theme") || "light";
+    document.getElementById("localOutput").textContent = "Saved destination: " + place + "\nTheme: " + theme;
+    if(place !== "None") document.getElementById("savedDestination").value = place;
+}
+
+document.getElementById("saveLocalBtn").addEventListener("click", function(){
+    localStorage.setItem("p6_destination", document.getElementById("savedDestination").value);
+    updateLocalDisplay();
+});
+
+document.getElementById("themeDemoBtn").addEventListener("click", function(){
+    document.body.classList.toggle("dark");
+    localStorage.setItem("p6_theme", document.body.classList.contains("dark") ? "dark" : "light");
+    updateLocalDisplay();
+});
+
+document.getElementById("removeLocalBtn").addEventListener("click", function(){
+    localStorage.removeItem("p6_destination");
+    localStorage.removeItem("p6_theme");
+    document.body.classList.remove("dark");
+    document.getElementById("savedDestination").value = "Goa";
+    updateLocalDisplay();
+});
+
+document.getElementById("reloadDemoBtn").addEventListener("click", function(){ window.location.reload(); });
+
+// 5. Session storage
+function updateSessionDisplay(){
+    let name = sessionStorage.getItem("p6_guest") || "";
+    document.getElementById("sessionOutput").textContent = name ? "Welcome, " + name + "! Saved for this tab session." : "No temporary name stored.";
+    document.getElementById("sessionName").value = name;
+}
+
+document.getElementById("saveSessionDemoBtn").addEventListener("click", function(){
+    let name = document.getElementById("sessionName").value.trim();
+    if(name === ""){ document.getElementById("sessionOutput").textContent = "Please enter a name first."; return; }
+    sessionStorage.setItem("p6_guest", name);
+    updateSessionDisplay();
+});
+
+document.getElementById("clearSessionDemoBtn").addEventListener("click", function(){
+    sessionStorage.removeItem("p6_guest");
+    updateSessionDisplay();
+});
+
+// Restore saved settings on page load.
+if(localStorage.getItem("p6_theme") === "dark") document.body.classList.add("dark");
+updateLocalDisplay();
+updateSessionDisplay();
+</script>
+</body>
+</html>

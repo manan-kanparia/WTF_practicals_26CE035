@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Practical 6 | WanderGo Travels</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="practical6.js" defer></script>
+</head>
+<body>
+    <header class="hero">
+        <div class="header-line"><span class="brand">🌍 WanderGo Travels</span><span class="course">ITUS102 • Practical 6</span></div>
+        <h1>Explore your next destination</h1>
+        <p>Learn JavaScript timers, callbacks, Fetch API and browser storage.</p>
+        <div class="promo"><span class="tag">LIVE OFFER</span><span id="promoMessage" aria-live="polite">Welcome! A special offer will appear in 3 seconds.</span></div>
+    </header>
+
+    <main class="container">
+        <section class="panel">
+            <div class="section-title"><span class="number">01</span><div><h2>JavaScript Timers</h2><p><code>setTimeout()</code> runs once; <code>setInterval()</code> repeats.</p></div></div>
+            <p id="timerResult" class="message">Promotional messages will change automatically every 5 seconds.</p>
+            <button id="stopTimerBtn" type="button" class="secondary">Stop Repeating Messages</button>
+        </section>
+
+        <section class="panel">
+            <div class="section-title"><span class="number">02</span><div><h2>Fetch API and JSON</h2><p>Retrieve package data from <code>packages.json</code> without refreshing the page.</p></div></div>
+            <div class="actions">
+                <button id="loadBtn" type="button">Load Travel Packages</button>
+                <button id="errorBtn" type="button" class="secondary">Test Error Handling</button>
+                <label class="select-label" for="destinationFilter">Destination
+                    <select id="destinationFilter"><option value="all">All Destinations</option></select>
+                </label>
+            </div>
+            <p id="fetchStatus" class="message" role="status" aria-live="polite">Click “Load Travel Packages” to begin.</p>
+            <div id="packageList" class="package-grid" aria-label="Travel packages"></div>
+        </section>
+
+        <section class="panel">
+            <div class="section-title"><span class="number">03</span><div><h2>Callback Function</h2><p>Simulate checking a travel request, then run another function.</p></div></div>
+            <button id="bookingBtn" type="button">Simulate Booking Request</button>
+            <p class="note">This is only a demonstration; no booking or payment occurs.</p>
+            <p id="callbackResult" class="message" role="status" aria-live="polite">Click the button to see the callback sequence.</p>
+        </section>
+
+        <section class="panel">
+            <div class="section-title"><span class="number">04</span><div><h2>Local Storage</h2><p>Your destination preference and theme remain after page reload.</p></div></div>
+            <div class="actions"><button id="themeBtn" type="button" class="secondary">Switch Light / Dark Theme</button><button id="clearLocalBtn" type="button" class="secondary">Clear Saved Preferences</button></div>
+            <p id="localResult" class="message">Saved preference: none</p>
+            <p class="note">Choose a destination using the filter above, then refresh the page to test.</p>
+        </section>
+
+        <section class="panel">
+            <div class="section-title"><span class="number">05</span><div><h2>Session Storage</h2><p>A guest name is kept for this browser tab's session.</p></div></div>
+            <div class="actions"><label class="select-label" for="guestName">Guest Name<input id="guestName" type="text" maxlength="30" placeholder="Enter your name"></label><button id="saveSessionBtn" type="button">Save Session Name</button><button id="clearSessionBtn" type="button" class="secondary">Clear Session Name</button></div>
+            <p id="sessionResult" class="message" role="status" aria-live="polite">No temporary guest name is saved.</p>
+        </section>
+
+        <section class="panel lesson"><h2>What students should understand</h2><p><strong>Timers → Callback → Fetch JSON → Update HTML → Save preferences.</strong> All examples run in the browser using HTML5, CSS3 and JavaScript. No database or backend application is needed.</p><p class="note">Important: Open this project using VS Code Live Server or <code>python -m http.server 8000</code>. Fetching a local JSON file usually does not work by double-clicking the HTML file.</p></section>
+    </main>
+    <footer>ITUS102 – Web Technology Framework • Beginner Practical 6</footer>
+</body>
+</html>

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Practical 4 - DOM and Event Handling</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<h1>Practical 4: DOM Manipulation and Event Handling</h1>
+<p>ShopEase Online Store - Beginner JavaScript DOM Demo</p>
+
+<div class="box">
+    <h2>1. Selecting HTML Elements</h2>
+    <p id="selectMessage">This paragraph has id="selectMessage".</p>
+    <p class="demoClass">First element with class="demoClass".</p>
+    <p class="demoClass">Second element with class="demoClass".</p>
+    <button id="selectBtn">Run DOM Selection Demo</button>
+    <p id="selectOutput" class="output">Output will appear here.</p>
+</div>
+
+<div class="box">
+    <h2>2. Change Content, Attribute and Style</h2>
+    <p id="changeText">Original product message.</p>
+    <a id="shopLink" href="https://example.com" target="_blank">Visit Shop</a><br>
+    <button id="contentBtn">Change Content</button>
+    <button id="attributeBtn">Change Link</button>
+    <button id="styleBtn">Change Style</button>
+</div>
+
+<div class="box">
+    <h2>3. Create, Append, Replace and Remove Elements</h2>
+    <ul id="productList">
+        <li>Mobile</li>
+        <li>Laptop</li>
+    </ul>
+    <button id="addBtn">Add Product</button>
+    <button id="replaceBtn">Replace First Product</button>
+    <button id="removeBtn">Remove Last Product</button>
+</div>
+
+<div class="box">
+    <h2>4. Click and Double-Click Events</h2>
+    <button id="clickBtn">Click Me</button>
+    <button id="doubleBtn">Double-Click Me</button>
+    <p id="clickOutput" class="output">Waiting for action...</p>
+</div>
+
+<div class="box">
+    <h2>5. Mouse Events</h2>
+    <div id="mouseBox" style="padding:25px;border:2px solid #555;width:240px;">Move mouse over this box.</div>
+    <p id="mouseOutput" class="output">Mouse event message will appear here.</p>
+</div>
+
+<div class="box">
+    <h2>6. Keyboard Events</h2>
+    <input type="text" id="nameInput" placeholder="Type your name">
+    <p id="keyOutput" class="output">Key information will appear here.</p>
+</div>
+
+<div class="box">
+    <h2>7. Change Event</h2>
+    <select id="categorySelect">
+        <option value="">Select Category</option>
+        <option value="Electronics">Electronics</option>
+        <option value="Clothing">Clothing</option>
+        <option value="Books">Books</option>
+    </select>
+    <p id="changeOutput" class="output">Selected category will appear here.</p>
+</div>
+
+<div class="box">
+    <h2>8. Theme Switching</h2>
+    <button id="themeBtn">Switch Theme</button>
+</div>
+
+<div class="box">
+    <h2>9. Image Preview</h2>
+    <select id="imageSelect">
+    <option value="laptop.jpg">Laptop</option>
+    <option value="camera.jpg">Camera</option>
+    <option value="food.jpg">Food</option>
+</select>
+<img id="previewImage" src="laptop.jpg" alt="Laptop preview">
+</div>
+
+<div class="box">
+    <h2>10. Dynamic Menu</h2>
+    <button id="menuBtn">Show / Hide Menu</button>
+    <div id="menu">Home | Products | Offers | Contact</div>
+</div>
+
+<script src="practical4.js"></script>
+</body>
+</html>

@@ -1,0 +1,26 @@
+PRACTICAL 6 – BEGINNER TESTING CHECKLIST
+
+1. Open the main project with VS Code Live Server or Python http.server.
+2. Wait 3 seconds: the special offer appears once.
+3. Wait 5 seconds: the promotional message changes. Try Stop.
+4. Click Load Travel Packages: five package cards are displayed.
+5. Select Goa: only the Goa package is displayed.
+6. Click Test Error Handling: an error message appears for a missing JSON file.
+7. Click Load Travel Packages again: the five cards return.
+8. Click Simulate Booking Request: callback confirmation appears after 1.5 seconds.
+9. Choose Jaipur and switch to dark theme; refresh then Load Travel Packages.
+   Expected: dark theme and Jaipur filter return.
+10. Enter a guest name, Save Session Name, and refresh the page.
+    Expected: guest name is remembered within the current tab session.
+11. Repeat essential actions on a mobile-sized browser window.
+12. Open Developer Tools > Console; confirm no unexpected errors.
+
+INTERACTIVE DEMO
+
+1. Open Practical6_Interactive_Demo.html directly, without a web server.
+2. Test setTimeout once and setInterval repeating; stop the repeating timer.
+3. Run a travel request and observe the callback.
+4. Fetch JSON from the in-browser Blob URL and see five cards.
+5. Simulate an invalid JSON response; confirm the .catch message.
+6. Save local preference and theme, refresh, and check persistence.
+7. Save session name, refresh, and check persistence.
