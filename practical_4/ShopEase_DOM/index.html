@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ShopEase Storefront | DOM &amp; Events</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body data-theme="dark">
+
+<header class="topbar">
+  <h1 class="logo">Shop<span>Ease</span></h1>
+  <button id="menuToggle" aria-expanded="false" aria-controls="mainNav">&#9776; Menu</button>
+  <button id="themeToggle">Light mode</button>
+</header>
+
+<nav id="mainNav" class="collapsed" aria-label="Main">
+  <ul>
+    <li><a href="#catalog">Catalog</a></li>
+    <li><a href="#cartPanel">Cart</a></li>
+    <li><a href="#labPanel">Selector Lab</a></li>
+    <li><a href="#logPanel">Event Log</a></li>
+  </ul>
+</nav>
+
+<div id="toast" role="status" aria-live="polite"></div>
+
+<main class="layout">
+  <section id="catalog" class="panel wide">
+    <h2>Product Catalog</h2>
+    <div class="toolbar">
+      <input type="search" id="searchBox" placeholder="Search products..." autocomplete="off">
+      <select id="categoryFilter">
+        <option value="all">All categories</option>
+        <option value="Electronics">Electronics</option>
+        <option value="Grocery">Grocery</option>
+      </select>
+      <span id="resultCount" class="badge">0 items</span>
+    </div>
+    <p id="keyHint" class="hint">Start typing to see keyboard events.</p>
+    <div id="productGrid" class="grid"></div>
+  </section>
+
+  <aside class="side">
+    <section class="panel" id="previewPanel">
+      <h2>Quick Preview</h2>
+      <img id="previewImg" src="img/laptop.jpg" alt="Hover a product to preview it">
+      <p id="previewName" class="hint">Hover over a product card.</p>
+    </section>
+
+    <section class="panel" id="cartPanel">
+      <h2>Your Cart</h2>
+      <ul id="cartList"></ul>
+      <p id="cartTotal" class="total">Total: &#8377;0</p>
+      <p class="hint">Double-click an item to remove it.</p>
+      <button id="removeLast" class="ghost">Remove last item</button>
+    </section>
+  </aside>
+
+  <section class="panel" id="dealPanel">
+    <h2>Deal of the Moment</h2>
+    <div id="dealSlot"><div class="deal" data-deal="0">Flat 10% off on Electronics</div></div>
+    <button id="swapDeal">Replace deal</button>
+  </section>
+
+  <section class="panel" id="labPanel">
+    <h2>Selector Lab</h2>
+    <button id="runSelectors">Run all 5 selectors</button>
+    <pre id="selectorOutput" class="lab-out">Press the button.</pre>
+  </section>
+
+  <section class="panel wide" id="logPanel">
+    <h2>Event Log</h2>
+    <ul id="eventLog"></ul>
+  </section>
+</main>
+
+<footer class="footer">ShopEase &middot; Practical 4 &middot; DOM Manipulation and Event Handling</footer>
+
+<script src="js/app.js"></script>
+</body>
+</html>
